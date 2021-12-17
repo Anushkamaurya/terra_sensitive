@@ -1,8 +1,8 @@
 terraform {
   required_providers {
-    google = {
-      source = "hashicorp/google"
-      version = "3.5.0"
+    google    = {
+      source  = var.source
+      version = var.version
     }
   }
 }
@@ -10,14 +10,14 @@ terraform {
 provider "google" {
   credentials = file("mylearning-331213-21e283592fa8.json")
 
-  project = "mylearning-331213"
-  region  = "asia-south1"
-  zone    = "asia-south1-a"
+  project = var.project
+  region  = var.region
+  zone    = var.zone
 }
 
 resource "google_compute_instance" "vm_instance" {
-  name         = "terraforminstance"
-  machine_type = "e2-medium"
+  name         = var.name
+  machine_type = var.machine_type
 
   boot_disk {
     initialize_params {
@@ -26,8 +26,8 @@ resource "google_compute_instance" "vm_instance" {
   }
 
   network_interface {
-    network = "mylearning-vpc1"
-    subnetwork = "subnet1"
+    network    =  var.network
+    subnetwork =  var.subnetwork
     access_config {
     }
   }

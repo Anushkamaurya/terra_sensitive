@@ -1,0 +1,7 @@
+sudo apt install wget
+sudo apt install unzip
+wget https://releases.hashicorp.com/terraform/1.1.1/terraform_1.1.1_linux_amd64.zip
+unzip terraform_1.1.1_linux_amd64.zip
+export PATH=$PATH:/home/beautiandbeast8/terraform
+terraform --version
+
