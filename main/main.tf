@@ -19,6 +19,7 @@ resource "google_compute_instance" "vm_instance" {
   name         = var.name
   machine_type = var.machine_type
 
+
   boot_disk {
     initialize_params {
       image = "debian-10-buster-v20211105"
