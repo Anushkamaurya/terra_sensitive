@@ -8,8 +8,6 @@ terraform {
 }
 
 provider "google" {
-  credentials = file("mylearning-331213-21e283592fa8.json")
-
   project = "mylearning-331213"
   region  = "asia-south1"
   zone    = "asia-south1-a"
@@ -18,7 +16,6 @@ provider "google" {
 resource "google_compute_network" "t_vpc_network" {
   name                    = "terra_network"
   auto_create_subnetworks = false
-  mtu                     = 1460
 }
 
 resource "google_compute_subnetwork" "t_subnet" {
