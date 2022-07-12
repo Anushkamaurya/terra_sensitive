@@ -1,0 +1,138 @@
+name: 'Terraform GitHub Actions'
+
+on:
+  # Triggers the workflow on push or pull request events but only for the "Release_dev" branch
+  pull_request:
+    branches: [ "Release_dev" ]
+
+jobs:
+  Dev:
+    runs-on: ubuntu-latest
+    environment: dev
+	
+    terraform:
+      name: 'Terraform'
+      runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Setup Terraform
+		    uses: hashicorp/setup-terraform@v1		
+	    
+	  	- name: Set GCP environment
+        id: set_gcp_env
+        run: echo ::set-env name=BRANCH_NAME::$(echo ${GITHUB_BASE_REF#refs/heads/})
+
+		  - name: "Terraform Init"
+        id: terraform_init
+        run: terraform init
+        env:
+          SENSITIVE_SA_KEY: ${{ secrets.SENSITIVE_SA_KEY}}
+		  
+      - name: "Terraform Validate"
+        id: terraform_validate
+        run: terraform validate -no-color
+        env:
+          SENSITIVE_SA_KEY: ${{ secrets.SENSITIVE_SA_KEY}} 
+		  
+      - name: "Terraform Plan"
+        id: terraform_plan
+        run: terraform plan -no-color
+        env:
+          SENSITIVE_SA_KEY: ${{ secrets.SENSITIVE_SA_KEY}}
+          
+      - name: "Terraform Apply"
+        run: terraform apply -auto-approve
+        id: terraform_apply
+        env:
+          SENSITIVE_SA_KEY: ${{ secrets.SENSITIVE_SA_KEY}}
+
+  Uat:
+    runs-on: ubuntu-latest
+    environment: uat
+    need: dev
+	
+    terraform:
+      name: 'Terraform'
+      runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Setup Terraform
+		    uses: hashicorp/setup-terraform@v1		
+	    
+	  	- name: Set GCP environment
+        id: set_gcp_env
+        run: echo ::set-env name=BRANCH_NAME::$(echo ${GITHUB_BASE_REF#refs/heads/})
+
+		  - name: "Terraform Init"
+        id: terraform_init
+        run: terraform init
+        env:
+          SENSITIVE_SA_KEY: ${{ secrets.SENSITIVE_SA_KEY}}
+		  
+      - name: "Terraform Validate"
+        id: terraform_validate
+        run: terraform validate -no-color
+        env:
+          SENSITIVE_SA_KEY: ${{ secrets.SENSITIVE_SA_KEY}} 
+		  
+      - name: "Terraform Plan"
+        id: terraform_plan
+        run: terraform plan -no-color
+        env:
+          SENSITIVE_SA_KEY: ${{ secrets.SENSITIVE_SA_KEY}}
+          
+      - name: "Terraform Apply"
+        run: terraform apply -auto-approve
+        id: terraform_apply
+        env:
+          SENSITIVE_SA_KEY: ${{ secrets.SENSITIVE_SA_KEY}}
+
+  Prd:
+    runs-on: ubuntu-latest
+    environment: prd
+    need: uat
+	
+    terraform:
+      name: 'Terraform'
+      runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      
+      - name: Setup Terraform
+		    uses: hashicorp/setup-terraform@v1		
+	    
+	  	- name: Set GCP environment
+        id: set_gcp_env
+        run: echo ::set-env name=BRANCH_NAME::$(echo ${GITHUB_BASE_REF#refs/heads/})
+
+		  - name: "Terraform Init"
+        id: terraform_init
+        run: terraform init
+        env:
+          SENSITIVE_SA_KEY: ${{ secrets.SENSITIVE_SA_KEY}}
+		  
+      - name: "Terraform Validate"
+        id: terraform_validate
+        run: terraform validate -no-color
+        env:
+          SENSITIVE_SA_KEY: ${{ secrets.SENSITIVE_SA_KEY}} 
+		  
+      - name: "Terraform Plan"
+        id: terraform_plan
+        run: terraform plan -no-color
+        env:
+          SENSITIVE_SA_KEY: ${{ secrets.SENSITIVE_SA_KEY}}
+          
+      - name: "Terraform Apply"
+        run: terraform apply -auto-approve
+        id: terraform_apply
+        env:
+          SENSITIVE_SA_KEY: ${{ secrets.SENSITIVE_SA_KEY}}
