@@ -60,7 +60,7 @@ jobs:
   Uat:
     runs-on: ubuntu-latest
     environment: uat
-    need: dev
+    needs: dev
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
@@ -111,7 +111,7 @@ jobs:
   Prd:
     runs-on: ubuntu-latest
     environment: prd
-    need: uat
+    needs: uat
 
     # Use the Bash shell regardless whether the GitHub Actions runner is ubuntu-latest, macos-latest, or windows-latest
     defaults:
