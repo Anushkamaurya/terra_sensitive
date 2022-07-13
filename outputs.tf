@@ -2,9 +2,9 @@
   value = google_project.main.name
 } */
 
-output "project_id" {
+/* output "project_id" {
   value = "project_id"
-}
+} */
 
 /* output "service_account_id" {
   value       = google_service_account.service_account.account_id
