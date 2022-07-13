@@ -1,5 +1,5 @@
-//project_id = ""
-//region  =   "europe-west2"
+project_id = "mylearning-331213"
+region  =   "europe-west2"
 project_name    =       "mylearning"
 bucket_name = "pot1_bucket" 
 bucket_location = "europe"
