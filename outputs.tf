@@ -3,7 +3,7 @@
 } */
 
 output "project_id" {
-  value = google_project.project.project_id
+  value = "project_id"
 }
 
 /* output "service_account_id" {
