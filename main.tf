@@ -4,7 +4,6 @@ resource "google_storage_bucket" "test_bucket" {
   location                    = var.bucket_location
   force_destroy               = var.bucket_force_destroy
   uniform_bucket_level_access = true
-  }
 }
 
 /* resource "google_project" "my_project" {
