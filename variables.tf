@@ -68,3 +68,8 @@ variable "bucket_name" {
   type        = list(string)
   default     = ""
 }
+
+variable "region" {
+  description = "bucket region"
+  type        = string
+}
