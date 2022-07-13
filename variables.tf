@@ -3,10 +3,10 @@ variable "project_id" {
   type        = string
 } 
 
-/* variable "billing_account" {
+variable "billing_account" {
   description = "The ID of the billing account to associate this project with"
   type        = string
-} */
+} 
 
 variable "project_services" {
   description = "A list of Google APIs to activate on this project"
@@ -40,7 +40,7 @@ variable "project_services" {
   default     = {}
 } */
 
-/* variable "disable_services_on_destroy" {
+variable "disable_services_on_destroy" {
   description = "Whether project services will be disabled when the resources are destroyed"
   default     = true
   type        = bool
@@ -50,7 +50,7 @@ variable "disable_dependent_services" {
   description = "Whether services that are enabled and which depend on this service should also be disabled when this service is destroyed."
   default     = true
   type        = bool
-} */
+} 
 
 /* variable "create_project_sa" {
   description = "Whether the default service account for the project shall be created"
