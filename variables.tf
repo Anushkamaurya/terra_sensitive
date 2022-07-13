@@ -19,20 +19,20 @@ variable "project_services" {
   type        = string
 } */
 
-variable "activate_apis" {
+/* variable "activate_apis" {
   description = "The list of apis to activate within the project"
   type        = list(string)
   default     = ["compute.googleapis.com"]
-}
+} */
 
-variable "activate_api_identities" {
+/* variable "activate_api_identities" {
   description = "The list of service identities (Google Managed service account for the API) to force-create for the project (e.g. in order to grant additional roles). APIs in this list will automatically be appended to `activate_apis`. Not including the API in this list will follow the default behaviour for identity creation (which is usually when the first resource using the API is created).Any roles (e.g. service agent role) must be explicitly listed."
   type = list(object({
     api   = string
     roles = list(string)
   }))
   default = []
-}
+} */
 
 /* variable "labels" {
   description = "Map of labels for project"
@@ -40,17 +40,17 @@ variable "activate_api_identities" {
   default     = {}
 } */
 
-/* variable "disable_services_on_destroy" {
+variable "disable_services_on_destroy" {
   description = "Whether project services will be disabled when the resources are destroyed"
   default     = true
   type        = bool
-} */
+} 
 
-/* variable "disable_dependent_services" {
+variable "disable_dependent_services" {
   description = "Whether services that are enabled and which depend on this service should also be disabled when this service is destroyed."
   default     = true
   type        = bool
-} */
+} 
 
 /* variable "create_project_sa" {
   description = "Whether the default service account for the project shall be created"
