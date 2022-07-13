@@ -6,14 +6,9 @@ resource "google_project" "my_project" {
   // org_id           = var.org_id
 }
 
-
-locals {
-  project_services =  var.project_services
-}
-
 resource "google_project_service" "project_services" {
   project                    = var.project_id
-  service                    = local.project_services
+  service                    = var.project_services
   disable_on_destroy         = var.disable_services_on_destroy
   disable_dependent_services = var.disable_dependent_services
 }
