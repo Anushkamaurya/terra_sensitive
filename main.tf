@@ -1,18 +1,27 @@
-resource "google_project" "my_project" {
+resource "google_storage_bucket" "test_bucket" {
+  name                        = var.bucket_name
+  project                     = var.project_name
+  location                    = var.bucket_location
+  force_destroy               = var.bucket_force_destroy
+  uniform_bucket_level_access = true
+  }
+}
+
+/* resource "google_project" "my_project" {
   name                = var.project_name
   project_id          = var.project_id 
   billing_account     = var.billing_account
   //labels              = var.labels
   // org_id           = var.org_id
-}
+} */
 
-resource "google_project_service" "project_services" {
+/* resource "google_project_service" "project_services" {
   count                      = length(var.project_services)
   // project                    = var.project_id
   service                    = var.project_services[count.index]
   disable_on_destroy         = var.disable_services_on_destroy
   disable_dependent_services = var.disable_dependent_services
-}
+} */
 
 /* resource "google_project_service" "project" {
   project = var.project_id
