@@ -8,6 +8,12 @@ variable "billing_account" {
   type        = string
 }
 
+variable "project_services" {
+  description = "A list of Google APIs to activate on this project"
+  default     = []
+  type        = list(string)
+}
+
 /* variable "org_id" {
   description = "The organization ID."
   type        = string
