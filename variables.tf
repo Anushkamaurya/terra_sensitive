@@ -66,7 +66,7 @@ variable "name" {
 variable "bucket_name" {
   description = "A name for a GCS bucket for backend the terraform state file"
   type        = list(string)
-  default     = ""
+  default     = "project_tfstate"
 }
 
 variable "region" {
