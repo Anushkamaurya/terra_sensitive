@@ -8,19 +8,7 @@ resource "google_project" "my_project" {
 
 
 locals {
-  project_services = distinct(
-    concat(
-      [
-        "storage.googleapis.com",
-        "cloudresourcemanager.googleapis.com",
-        "compute.googleapis.com",
-        "iam.googleapis.com",
-        "serviceusage.googleapis.com",
-        "storage-component.googleapis.com",
-      ],
-      var.project_services
-    )
-  )
+  project_services =  var.project_services
 }
 
 resource "google_project_service" "project_services" {
