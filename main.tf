@@ -23,16 +23,16 @@ locals {
   )
 }
 
-module "project_services" {
-  source = "./modules/project_services"
+resource "google_project_service" "project_services" {
+  project                    = var.project_id
+  service                    = local.project_services
+  disable_on_destroy         = var.disable_services_on_destroy
+  disable_dependent_services = var.disable_dependent_services
 
-  project_id       = google_project.project.project_id
-  project_services = local.project_services
-
-  disable_on_destroy         = true
-  disable_dependent_services = true
+  depends_on = [
+    google_project_service.compute_engine
+  ]
 }
-
 /* resource "google_project_service" "project" {
   project = var.project_id
   service = "iam.googleapis.com"
