@@ -31,6 +31,7 @@ jobs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
 
+    # Checks that all Terraform configuration files adhere to a canonical format
     - name: terraform fmt
       run:  terraform fmt -check
       continue-on-error: true
@@ -40,10 +41,6 @@ jobs:
       run: terraform init 
       env:
         GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS}}
-
-    # Checks that all Terraform configuration files adhere to a canonical format
-    - name: Terraform Format
-      run: terraform fmt -check
 
     # Validate the code
     - name: "Terraform Validate"
