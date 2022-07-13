@@ -64,7 +64,7 @@ variable "disable_dependent_services" {
   default     = "project-service-account"
 } */
 
-variable "name" {
+variable "project_name" {
   description = "The name for the project"
   type        = string
 }
