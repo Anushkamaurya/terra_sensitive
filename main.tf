@@ -6,7 +6,34 @@ resource "google_project" "my_project" {
   // org_id           = var.org_id
 }
 
-resource "google_project_service" "project" {
+
+locals {
+  project_services = distinct(
+    concat(
+      [
+        "storage.googleapis.com",
+        "cloudresourcemanager.googleapis.com",
+        "compute.googleapis.com",
+        "iam.googleapis.com",
+        "serviceusage.googleapis.com",
+        "storage-component.googleapis.com",
+      ],
+      var.project_services
+    )
+  )
+}
+
+module "project_services" {
+  source = "./modules/project_services"
+
+  project_id       = google_project.project.project_id
+  project_services = local.project_services
+
+  disable_on_destroy         = true
+  disable_dependent_services = true
+}
+
+/* resource "google_project_service" "project" {
   project = var.project_id
   service = "iam.googleapis.com"
   activate_apis               = local.activate_apis
@@ -17,7 +44,7 @@ resource "google_project_service" "project" {
 
 locals {
   activate_apis       = var.activate_apis
-}
+} */
 
 
 /* resource "google_service_account" "default_service_account" {
