@@ -26,11 +26,6 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: '14'
-    
-   /* - name: install dependencies
-      run:  |
-        apt-get update
-        apt-get install -y unzip git jq */
 
     # Install the latest version of Terraform CLI and configure the Terraform CLI configuration file with a Terraform Cloud user API token
     - name: Setup Terraform
