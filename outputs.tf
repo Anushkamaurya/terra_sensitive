@@ -1,13 +1,9 @@
-output "project_name" {
+/* output "project_name" {
   value = google_project.main.name
-}
+} */
 
 output "project_id" {
-  value = module.project_services.project_id
-  depends_on = [
-    module.project_services,
-    google_project.main
-  ]
+  value = google_project.project.project_id
 }
 
 /* output "service_account_id" {
