@@ -1,7 +1,7 @@
-/* variable "project_id" {
+variable "project_id" {
   description = "GCP project"
   type        = string
-} */
+} 
 
 /* variable "billing_account" {
   description = "The ID of the billing account to associate this project with"
@@ -87,7 +87,7 @@ variable "bucket_force_destroy" {
   default     = false
 }
 
-/* variable "region" {
+variable "region" {
   description = "bucket region"
   type        = string
-} */
+}
