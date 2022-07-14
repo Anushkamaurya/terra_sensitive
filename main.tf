@@ -1,6 +1,6 @@
 resource "google_storage_bucket" "test_bucket" {
   name                        = var.bucket_name
-  project                     = var.project_name
+  project                     = var.project_id
   location                    = var.bucket_location
   force_destroy               = var.bucket_force_destroy
   uniform_bucket_level_access = true
