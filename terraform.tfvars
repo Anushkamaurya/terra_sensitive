@@ -1,6 +1,6 @@
-project_id = "mylearning-331213"
+project_id = "gke-practice-1-334009"
 region  =   "europe-west2"
-project_name    =       "mylearning"
+project_name    =       "gke practice 1"
 bucket_name = "pot1_bucket" 
 bucket_location = "europe-west2"
 bucket_force_destroy    =       true
