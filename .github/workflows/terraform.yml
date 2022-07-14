@@ -31,37 +31,34 @@ jobs:
     - name: Setup Terraform
       uses: hashicorp/setup-terraform@v1
 
+    # Checks that all Terraform configuration files adhere to a canonical format
     - name: terraform fmt
       run:  terraform fmt -check
       continue-on-error: true
 
     # Initialize a new or existing Terraform working directory by creating initial files, loading any remote state, downloading modules, etc.
     - name: Terraform Init
-      run: terraform init -backend-config=backend.hcl
+      run: terraform init 
       env:
-        SENSITIVE_SA_KEY: ${{ secrets.SENSITIVE_SA_KEY}}
-
-    # Checks that all Terraform configuration files adhere to a canonical format
-    - name: Terraform Format
-      run: terraform fmt -check
+        GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS}}
 
     # Validate the code
     - name: "Terraform Validate"
       id: terraform_validate
       run: terraform validate -no-color
       env:
-        SENSITIVE_SA_KEY: ${{ secrets.SENSITIVE_SA_KEY}} 
+        GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS}} 
 
     # Generates an execution plan for Terraform
     - name: Terraform Plan
       run: terraform plan
       env:
-        SENSITIVE_SA_KEY: ${{ secrets.SENSITIVE_SA_KEY}}
+        GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS}}
 
       # On push to main, build or change infrastructure according to Terraform configuration files
       # Note: It is recommended to set up a required "strict" status check in your repository for "Terraform Cloud". See the documentation on "strict" required status checks for more information: https://help.github.com/en/github/administering-a-repository/types-of-required-status-checks
     - name: Terraform Apply
-      if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+      # if: github.ref == 'refs/heads/Release_dev' && github.event_name == 'pull'
       run: terraform apply -auto-approve
       env:
-        SENSITIVE_SA_KEY: ${{ secrets.SENSITIVE_SA_KEY}}
+        GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_APPLICATION_CREDENTIALS}}
